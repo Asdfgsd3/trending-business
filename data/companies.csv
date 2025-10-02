@@ -1,0 +1,215 @@
+name,ticker,aliases
+Apple,AAPL,Apple Inc;iphone;ipad;macbook;ios;tim cook;iPhone;iPad;MacBook;AirPods;Apple Watch
+Microsoft,MSFT,Microsoft Corp;Windows;Xbox;Azure;Office 365;Teams
+Amazon,AMZN,Amazon.com;AWS;Prime Video;Alexa;Jeff Bezos;Andy Jassy
+Alphabet,GOOGL,Google;YouTube;Waymo;Sundar Pichai;Chrome;Android
+Meta,META,Facebook;Instagram;WhatsApp;Oculus;Mark Zuckerberg;Threads
+Tesla,TSLA,Elon Musk;Model 3;Model Y;Cybertruck;Supercharger;FSD
+NVIDIA,NVDA,GeForce;CUDA;AI chips;Jensen Huang;RTX;H100
+Netflix,NFLX,Netflix Inc;streaming;Reed Hastings;binge watching
+AMD,AMD,Ryzen;Radeon;EPYC;Lisa Su;Threadripper
+Intel,INTC,Core i9;Xeon;Arc;Pat Gelsinger;chip shortage
+Salesforce,CRM,Sales Cloud;Slack;Tableau;Marc Benioff;Trailhead
+Adobe,ADBE,Photoshop;Acrobat;Creative Cloud;Lightroom;Illustrator
+Uber,UBER,Uber Eats;ridehailing;Dara Khosrowshahi;gig economy
+Airbnb,ABNB,home sharing;bnb;Brian Chesky;vacation rental
+Spotify,SPOT,Spotify Technology;music streaming;Daniel Ek;podcasts
+PayPal,PYPL,payment processing;Venmo;digital wallet;fintech
+Square,SQ,Block Inc;Cash App;Jack Dorsey;point of sale
+Coinbase,COIN,cryptocurrency;crypto exchange;bitcoin;ethereum
+Robinhood,HOOD,commission-free trading;Vlad Tenev;stock trading app
+Palantir,PLTR,data analytics;Peter Thiel;government contracts;big data
+Snowflake,SNOW,cloud computing;data warehouse;Frank Slootman
+CrowdStrike,CRWD,cybersecurity;endpoint protection;George Kurtz
+Zoom,ZM,video conferencing;Eric Yuan;remote work;pandemic winner
+Slack,WORK,workplace communication;Stewart Butterfield;team collaboration
+DocuSign,DOCU,digital signatures;electronic documents;remote signing
+Peloton,PTON,exercise bike;connected fitness;John Foley;home gym
+Beyond Meat,BYND,plant-based meat;vegan;alternative protein;Ethan Brown
+Moderna,MRNA,mRNA vaccine;COVID vaccine;Stephane Bancel;biotech
+Pfizer,PFE,pharmaceutical;vaccine;Albert Bourla;drug development
+Johnson & Johnson,JNJ,healthcare;pharmaceuticals;medical devices;J&J
+Walmart,WMT,retail;grocery;supermarket;Doug McMillon;everyday low prices
+Target,TGT,retail;bullseye;Brian Cornell;red card
+Costco,COST,wholesale;membership;bulk buying;Jim Sinegal
+Home Depot,HD,home improvement;DIY;hardware store;Ted Decker
+Nike,NKE,athletic wear;Just Do It;swoosh;Phil Knight;sneakers
+Adidas,ADDYY,athletic wear;three stripes;sneakers;sports apparel
+Coca-Cola,KO,soft drinks;Coke;Warren Buffett;James Quincey
+PepsiCo,PEP,soft drinks;Pepsi;snacks;Ramon Laguarta;Frito-Lay
+McDonald's,MCD,fast food;Golden Arches;Big Mac;Chris Kempczinski
+Starbucks,SBUX,coffee;Howard Schultz;Laxman Narasimhan;frappuccino
+Disney,DIS,entertainment;Mickey Mouse;Marvel;Star Wars;Bob Iger
+Warner Bros Discovery,WBD,entertainment;HBO;CNN;streaming;David Zaslav
+Comcast,CMCSA,cable;NBCUniversal;internet provider;Brian Roberts
+AT&T,T,telecommunications;wireless;internet;John Stankey
+Verizon,VZ,wireless;telecommunications;5G;Hans Vestberg
+T-Mobile,TMUS,wireless;Un-carrier;Mike Sievert;magenta
+Ford,F,automotive;F-150;Mustang;Jim Farley;electric vehicles
+General Motors,GM,automotive;Chevrolet;Cadillac;Mary Barra;EV
+Rivian,RIVN,electric vehicles;EV truck;Amazon;RJ Scaringe
+Lucid Motors,LCID,luxury EV;Peter Rawlinson;electric sedan;Saudi Arabia
+ChargePoint,CHPT,EV charging;electric vehicle infrastructure
+American Express,AXP,credit cards;Amex;Stephen Squeri;charge cards
+Visa,V,payment processing;credit cards;Al Kelly;financial services
+Mastercard,MA,payment processing;credit cards;Michael Miebach
+JPMorgan Chase,JPM,banking;Jamie Dimon;investment banking;Chase Bank
+Bank of America,BAC,banking;Brian Moynihan;BofA;Merrill Lynch
+Wells Fargo,WFC,banking;Charlie Scharf;mortgage;retail banking
+Goldman Sachs,GS,investment banking;David Solomon;Wall Street
+Morgan Stanley,MS,investment banking;James Gorman;wealth management
+Berkshire Hathaway,BRK.A,conglomerate;Warren Buffett;Charlie Munger;GEICO
+ExxonMobil,XOM,oil;energy;Darren Woods;petroleum;gas prices
+Chevron,CVX,oil;energy;Mike Wirth;petroleum;gas stations
+ConocoPhillips,COP,oil;energy;Ryan Lance;petroleum;shale
+Marathon Petroleum,MPC,oil refining;gas stations;Michael Hennigan
+Valero,VLO,oil refining;gas stations;Joe Gorder;petroleum products
+NextEra Energy,NEE,renewable energy;solar;wind;John Ketchum;utilities
+Duke Energy,DUK,utilities;electric power;Lynn Good;nuclear
+Dominion Energy,D,utilities;natural gas;electric power;Bob Blue
+American Electric Power,AEP,utilities;electric power;Julie Sloat
+Southern Company,SO,utilities;electric power;Tom Fanning;coal
+UnitedHealth,UNH,health insurance;healthcare;Andrew Witty;Optum
+Anthem,ANTM,health insurance;Elevance Health;Gail Boudreaux
+Humana,HUM,health insurance;Medicare;Bruce Broussard;seniors
+CVS Health,CVS,pharmacy;health insurance;Karen Lynch;Aetna
+Walgreens,WBA,pharmacy;drugstore;Rosalind Brewer;retail pharmacy
+Rite Aid,RAD,pharmacy;drugstore;Elizabeth Burr;retail pharmacy
+Abbott,ABT,healthcare;medical devices;Robert Ford;diagnostics
+Medtronic,MDT,medical devices;Geoff Martha;pacemakers;diabetes
+Boston Scientific,BSX,medical devices;Mike Mahoney;stents;cardiology
+Intuitive Surgical,ISRG,robotic surgery;da Vinci;Gary Guthart;minimally invasive
+Illumina,ILMN,genomics;DNA sequencing;Francis deSouza;genetic testing
+Thermo Fisher,TMO,life sciences;Marc Casper;laboratory equipment;COVID testing
+Danaher,DHR,life sciences;Rainer Blair;diagnostics;biotechnology
+Agilent,A,life sciences;Mike McMullen;analytical instruments;diagnostics
+Waters,WAT,analytical instruments;Udit Batra;chromatography;mass spectrometry
+PerkinElmer,PKI,life sciences;Prahlad Singh;diagnostics;environmental
+Mettler Toledo,MTD,precision instruments;Olivier Filliol;laboratory balances
+Caterpillar,CAT,heavy machinery;Jim Umpleby;construction equipment;mining
+Deere,DE,agricultural equipment;John Deere;tractors;Ryan Campbell
+3M,MMM,industrial conglomerate;Mike Roman;Post-it;Scotch tape
+General Electric,GE,industrial conglomerate;Larry Culp;jet engines;power
+Honeywell,HON,industrial conglomerate;Darius Adamczyk;aerospace;automation
+Lockheed Martin,LMT,defense;Jim Taiclet;F-35;missiles;aerospace
+Boeing,BA,aerospace;Dave Calhoun;737 MAX;787 Dreamliner;defense
+Raytheon,RTX,defense;Greg Hayes;missiles;aerospace;cybersecurity
+Northrop Grumman,NOC,defense;Kathy Warden;B-21 bomber;space systems
+General Dynamics,GD,defense;Phebe Novakovic;submarines;combat vehicles
+L3Harris,LHX,defense;Christopher Kubasik;communications;space
+BAE Systems,BAESY,defense;Charles Woodburn;military technology;cybersecurity
+Broadcom,AVGO,semiconductor;Hock Tan;chips;5G;wireless;WiFi
+Qualcomm,QCOM,mobile chips;5G;Snapdragon;Cristiano Amon;wireless
+Texas Instruments,TXN,semiconductor;analog chips;Haviv Ilan;TI;calculators
+Analog Devices,ADI,semiconductor;analog;Vincent Roche;ADI;mixed signal
+Marvell Technology,MRVL,semiconductor;Matt Murphy;data infrastructure;storage
+Advanced Micro Devices,AMD,processors;graphics;Lisa Su;Ryzen;Radeon;EPYC
+Micron Technology,MU,memory;DRAM;NAND;Sanjay Mehrotra;storage
+Applied Materials,AMAT,semiconductor equipment;Gary Dickerson;chip manufacturing
+KLA Corporation,KLAC,semiconductor equipment;Rick Wallace;process control
+Lam Research,LRCX,semiconductor equipment;Tim Archer;wafer fabrication
+ASML Holding,ASML,semiconductor equipment;Peter Wennink;lithography;EUV
+Cadence Design,CDNS,EDA software;Anirudh Devgan;chip design;electronic design
+Synopsys,SNPS,EDA software;Sassine Ghazi;chip design;electronic design automation
+Autodesk,ADSK,design software;Andrew Anagnost;CAD;3D design;AutoCAD
+ServiceNow,NOW,cloud software;Bill McDermott;IT service management;workflow
+Workday,WDAY,cloud software;Aneel Bhusri;HR software;enterprise software
+Datadog,DDOG,monitoring;Olivier Pomel;observability;cloud monitoring;DevOps
+Splunk,SPLK,data analytics;Gary Steele;machine data;security;SIEM
+Palo Alto Networks,PANW,cybersecurity;Nikesh Arora;firewall;network security
+Fortinet,FTNT,cybersecurity;Ken Xie;FortiGate;network security;SASE
+Check Point Software,CHKP,cybersecurity;Gil Shwed;firewall;threat prevention
+Zscaler,ZS,cloud security;Jay Chaudhry;zero trust;secure web gateway
+Okta,OKTA,identity;Todd McKinnon;single sign-on;identity management;zero trust
+Verisign,VRSN,domain names;Jim Bidzos;.com;.net;internet infrastructure
+Akamai Technologies,AKAM,CDN;Tom Leighton;edge computing;content delivery;DDoS protection
+Cloudflare,NET,CDN;Matthew Prince;edge computing;DNS;web security
+MongoDB,MDB,database;Dev Ittycheria;NoSQL;document database;Atlas
+Elastic,ESTC,search;Shay Banon;Elasticsearch;observability;data search
+Confluent,CFLT,data streaming;Jay Kreps;Apache Kafka;real-time data
+GitLab,GTLB,DevOps;Sid Sijbrandij;version control;CI/CD;code repository
+JFrog,FROG,DevOps;Shlomi Ben Haim;software delivery;artifact repository
+Unity Software,U,game engine;John Riccitiello;3D development;gaming;AR/VR
+Roblox,RBLX,gaming platform;David Baszucki;metaverse;user-generated content
+Electronic Arts,EA,gaming;Andrew Wilson;FIFA;Madden;Battlefield;Apex Legends
+Activision Blizzard,ATVI,gaming;Bobby Kotick;Call of Duty;World of Warcraft;Candy Crush
+Take-Two Interactive,TTWO,gaming;Strauss Zelnick;Grand Theft Auto;NBA 2K;Red Dead
+Roku,ROKU,streaming;Anthony Wood;TV streaming;advertising;cord cutting
+Warner Bros Discovery,WBD,media;David Zaslav;HBO;CNN;Discovery;streaming
+Comcast,CMCSA,media;Brian Roberts;NBCUniversal;cable;internet;Peacock
+Charter Communications,CHTR,cable;Tom Rutledge;Spectrum;internet;cable TV
+Lumen Technologies,LUMN,telecom;Kate Johnson;CenturyLink;fiber;enterprise
+Cogent Communications,CCOI,internet;Dave Schaeffer;wholesale internet;fiber
+Sirius XM,SIRI,satellite radio;Jennifer Witz;SXM;satellite;audio entertainment
+iHeartMedia,IHRT,radio;Bob Pittman;Clear Channel;radio broadcasting;podcasts
+Live Nation,LYV,entertainment;Michael Rapino;concerts;Ticketmaster;live events
+AMC Entertainment,AMC,movie theaters;Adam Aron;cinema;movie theaters;meme stock
+Cinemark,CNK,movie theaters;Sean Gamble;cinema;movie theaters
+IMAX,IMAX,entertainment;Richard Gelfond;premium cinema;large format
+DraftKings,DKNG,sports betting;Jason Robins;fantasy sports;online gambling
+FanDuel,FUEl,sports betting;Amy Howe;fantasy sports;online gambling;Flutter
+Penn Entertainment,PENN,gaming;Jay Snowden;casinos;Barstool Sports;sports betting
+MGM Resorts,MGM,casinos;Bill Hornbuckle;Las Vegas;hotels;entertainment;BetMGM
+Las Vegas Sands,LVS,casinos;Robert Goldstein;Venetian;Palazzo;Macau;Singapore
+Wynn Resorts,WYNN,casinos;Craig Billings;Las Vegas;Macau;luxury resorts
+Caesars Entertainment,CZR,casinos;Tom Reeg;Las Vegas;Atlantic City;sports betting
+Boyd Gaming,BYD,casinos;Keith Smith;regional gaming;locals casinos
+Red Rock Resorts,RRR,casinos;Frank Fertitta;Station Casinos;Las Vegas locals
+Golden Entertainment,GDEN,casinos;Blake Sartini;Nevada;distributed gaming
+Marriott International,MAR,hotels;Anthony Capuano;Marriott;hotels;travel;hospitality
+Hilton Worldwide,HLT,hotels;Christopher Nassetta;Hilton;hotels;travel;hospitality
+Hyatt Hotels,H,hotels;Mark Hoplamazian;Hyatt;hotels;luxury;hospitality
+Wyndham Hotels,WH,hotels;Geoffrey Ballotti;Wyndham;hotels;franchising
+Choice Hotels,CHH,hotels;Patrick Pacious;Comfort Inn;Quality Inn;Sleep Inn
+Extended Stay America,STAY,hotels;Bruce Haase;extended stay;business travel
+Airbnb,ABNB,home sharing;Brian Chesky;vacation rental;travel;short-term rental
+Booking Holdings,BKNG,travel;Glenn Fogel;Booking.com;Priceline;Kayak;OpenTable
+Expedia Group,EXPE,travel;Peter Kern;Expedia;Hotels.com;Vrbo;travel booking
+TripAdvisor,TRIP,travel;Matt Goldberg;travel reviews;restaurant reviews;Tripadvisor
+Trivago,TRVG,travel;Axel Hefer;hotel comparison;travel booking;metasearch
+MakeMyTrip,MMYT,travel;Rajesh Magow;India travel;online travel agency
+TUI,TUI,travel;Fritz Joussen;European travel;tour operator;cruise
+Carnival Corporation,CCL,cruise;Josh Weinstein;cruise lines;Princess;Holland America
+Royal Caribbean,RCL,cruise;Jason Liberty;cruise lines;Celebrity;Silversea
+Norwegian Cruise Line,NCLH,cruise;Harry Sommer;cruise lines;Oceania;Regent
+Delta Air Lines,DAL,airlines;Ed Bastian;airline;SkyMiles;travel
+American Airlines,AAL,airlines;Robert Isom;airline;AAdvantage;travel
+United Airlines,UAL,airlines;Scott Kirby;airline;MileagePlus;travel
+Southwest Airlines,LUV,airlines;Bob Jordan;low-cost airline;no fees;travel
+JetBlue Airways,JBLU,airlines;Robin Hayes;low-cost airline;Mint;TrueBlue
+Alaska Air Group,ALK,airlines;Ben Minicucci;Alaska Airlines;Virgin America
+Spirit Airlines,SAVE,airlines;Ted Christie;ultra-low-cost;no frills
+Frontier Airlines,ULCC,airlines;Barry Biffle;ultra-low-cost;discount airline
+Allegiant Travel,ALGT,airlines;Maury Gallagher;leisure airline;vacation packages
+Sun Country Airlines,SNCY,airlines;Jude Bricker;leisure airline;cargo
+Hawaiian Airlines,HA,airlines;Peter Ingram;Hawaii;inter-island;Pacific
+Copa Holdings,CPA,airlines;Pedro Heilbron;Latin America;Panama;Copa Airlines
+Gol Linhas Aereas,GOL,airlines;Celso Ferrer;Brazil;low-cost;Latin America
+Azul,AZUL,airlines;John Rodgerson;Brazil;regional;Latin America
+VistaJet,VIST,aviation;Thomas Flohr;private jets;business aviation
+NetJets,NJT,aviation;Patrick Gallagher;private jets;fractional ownership
+FlightSafety International,FSI,aviation;Brad Thress;pilot training;flight simulation
+CAE,CAE,aviation;Marc Parent;flight simulation;pilot training;defense
+Textron,TXT,aerospace;Scott Donnelly;Cessna;Beechcraft;Bell Helicopter
+General Dynamics,GD,aerospace;Phebe Novakovic;Gulfstream;business jets;defense
+Bombardier,BBD,aerospace;Eric Martel;business jets;Global;Challenger
+Embraer,ERJ,aerospace;Francisco Gomes Neto;regional jets;business jets;defense
+Airbus,EADSY,aerospace;Guillaume Faury;commercial aircraft;A320;A350
+Boeing,BA,aerospace;Dave Calhoun;commercial aircraft;737;787;defense
+Rolls-Royce,RYCEY,aerospace;Tufan Erginbilgic;jet engines;aerospace;power systems
+Safran,SAFRY,aerospace;Olivier Andries;jet engines;aerospace equipment;CFM56
+MTU Aero Engines,MTUAY,aerospace;Reiner Winkler;jet engines;aerospace;commercial engines
+Honeywell,HON,aerospace;Darius Adamczyk;aerospace;automation;turbochargers
+Parker-Hannifin,PH,aerospace;Tom Williams;motion control;aerospace;filtration
+Woodward,WWD,aerospace;Tom Gendron;aerospace;energy;control systems
+Hexcel,HXL,aerospace;Nick Stanage;composite materials;carbon fiber;aerospace
+Spirit AeroSystems,SPR,aerospace;Tom Gentile;Boeing supplier;Airbus supplier;aerostructures
+Triumph Group,TGI,aerospace;Daniel Crowley;aerospace;aftermarket;aerostructures
+HEICO,HEI,aerospace;Laurans Mendelson;aerospace;aftermarket;electronic equipment
+TransDigm Group,TDG,aerospace;Kevin Stein;aerospace;aftermarket;aviation components
+AAR Corp,AIR,aerospace;John Holmes;aviation aftermarket;aircraft maintenance
+Textron Aviation,TXT,aerospace;Ron Draper;Cessna;Beechcraft;business aviation
+Gulfstream Aerospace,GD,aerospace;Mark Burns;business jets;G650;ultra-long-range
+Dassault Aviation,DUAVF,aerospace;Eric Trappier;Falcon jets;business aviation;fighter jets
+Pilatus Aircraft,PIAGF,aerospace;Markus Bucher;business aviation;PC-24;training aircraft
+

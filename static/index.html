@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trending Businesses</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif; 
+        margin: 0; padding: 0; 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #1f2937;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .nav-link {
+        color: #667eea;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        font-weight: 500;
+      }
+      .nav-link:hover {
+        background: rgba(102, 126, 234, 0.1);
+        transform: translateY(-1px);
+      }
+      h1 { 
+        font-size: 32px; 
+        margin: 0 0 8px 0; 
+        font-weight: 700;
+        color: #1f2937;
+      }
+      .subtitle { 
+        color: #6b7280; 
+        font-size: 16px;
+        margin: 0;
+      }
+      .stats-bar {
+        display: flex;
+        gap: 24px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid #e5e7eb;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat-value {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1f2937;
+        display: block;
+      }
+      .stat-label {
+        font-size: 12px;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .table-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      table { 
+        border-collapse: collapse; 
+        width: 100%; 
+      }
+      th, td { 
+        padding: 16px 20px; 
+        text-align: left; 
+        border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+      }
+      th { 
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        position: sticky; 
+        top: 0; 
+        font-weight: 600;
+        color: #374151;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      tr:hover {
+        background: rgba(102, 126, 234, 0.04);
+        transition: background 0.2s;
+      }
+      .rank {
+        font-weight: 700;
+        color: #667eea;
+        font-size: 16px;
+      }
+      .company-name {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .ticker {
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        background: #f3f4f6;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #374151;
+      }
+      .badge { 
+        display: inline-block; 
+        padding: 4px 10px; 
+        border-radius: 12px; 
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        font-size: 11px; 
+        font-weight: 500;
+        margin-left: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+      .metric {
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .lift {
+        color: #059669;
+      }
+      .lift.high {
+        color: #dc2626;
+      }
+      .timestamp {
+        color: #6b7280;
+        font-size: 13px;
+      }
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: #6b7280;
+      }
+      @media (max-width: 768px) {
+        .container { padding: 12px; }
+        .header { padding: 16px; }
+        .stats-bar { flex-wrap: wrap; gap: 16px; }
+        th, td { padding: 12px 16px; }
+        h1 { font-size: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="nav">
+          <div class="nav-left">
+            <div class="logo">TrendTracker</div>
+          </div>
+          <div class="nav-links" style="display: flex; gap: 16px;">
+            <a href="/chart" class="nav-link">📈 Charts</a>
+            <a href="/sectors" class="nav-link">🏢 Sectors</a>
+          </div>
+        </div>
+        
+        <h1>Trending Businesses</h1>
+        <p class="subtitle">Real-time business sentiment tracking from Reddit and news sources</p>
+        
+        <div class="stats-bar">
+          <div class="stat">
+            <span class="stat-value" id="totalCompanies">-</span>
+            <span class="stat-label">Companies Tracked</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="totalMentions">-</span>
+            <span class="stat-label">Total Mentions</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" id="lastUpdate">-</span>
+            <span class="stat-label">Last Update</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table id="table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Company</th>
+              <th>Ticker</th>
+              <th>Recent Mentions</th>
+              <th>Baseline</th>
+              <th>Trending Factor</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      async function fetchData() {
+        const res = await fetch('/api/trending');
+        const data = await res.json();
+        const tbody = document.querySelector('#table tbody');
+        tbody.innerHTML = '';
+        
+        // Update stats
+        const totalCompanies = data.length;
+        const totalMentions = data.reduce((sum, row) => sum + row.recent_count, 0);
+        const lastUpdate = data.length > 0 ? new Date(data[0].timestamp).toLocaleTimeString() : '-';
+        
+        document.getElementById('totalCompanies').textContent = totalCompanies;
+        document.getElementById('totalMentions').textContent = Math.round(totalMentions);
+        document.getElementById('lastUpdate').textContent = lastUpdate;
+        
+        data.forEach((row, idx) => {
+          const tr = document.createElement('tr');
+          const liftClass = row.lift > 2 ? 'lift high' : 'lift';
+          const ticker = row.ticker ? `<span class="ticker">${row.ticker}</span>` : '';
+          
+          tr.innerHTML = `
+            <td><span class="rank">#${idx + 1}</span></td>
+            <td>
+              <span class="company-name">${row.name}</span>
+              ${row.alias_used ? `<span class="badge">${row.alias_used}</span>` : ''}
+            </td>
+            <td>${ticker}</td>
+            <td><span class="metric">${row.recent_count.toFixed(0)}</span></td>
+            <td><span class="metric">${row.baseline.toFixed(2)}</span></td>
+            <td><span class="metric ${liftClass}">${row.lift.toFixed(2)}×</span></td>
+            <td><span class="timestamp">${new Date(row.timestamp).toLocaleString()}</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+      fetchData();
+      setInterval(fetchData, 5 * 60 * 1000);
+    </script>
+  </body>
+  </html>
+
+

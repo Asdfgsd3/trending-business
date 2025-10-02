@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trending by Sectors</title>
+    <style>
+      * { box-sizing: border-box; }
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif; 
+        margin: 0; padding: 0; 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #1f2937;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 24px;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .nav-links {
+        display: flex;
+        gap: 16px;
+      }
+      .nav-link {
+        color: #667eea;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        font-weight: 500;
+      }
+      .nav-link:hover {
+        background: rgba(102, 126, 234, 0.1);
+        transform: translateY(-1px);
+      }
+      h1 { 
+        font-size: 32px; 
+        margin: 0 0 8px 0; 
+        font-weight: 700;
+        color: #1f2937;
+      }
+      .subtitle { 
+        color: #6b7280; 
+        font-size: 16px;
+        margin: 0;
+      }
+      .sectors-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 24px;
+      }
+      .sector-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .sector-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 2px solid #e5e7eb;
+      }
+      .sector-icon {
+        font-size: 24px;
+        margin-right: 12px;
+      }
+      .sector-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0;
+      }
+      .sector-count {
+        margin-left: auto;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .company-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .company-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 16px;
+        background: #f8fafc;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .company-item:hover {
+        background: #e2e8f0;
+        transform: translateX(4px);
+      }
+      .company-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .company-name {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .company-ticker {
+        font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+        background: #e5e7eb;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        color: #374151;
+      }
+      .company-metrics {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .metric {
+        text-align: center;
+      }
+      .metric-value {
+        font-weight: 700;
+        font-size: 14px;
+        display: block;
+      }
+      .metric-label {
+        font-size: 10px;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .lift-value {
+        color: #059669;
+      }
+      .lift-value.high {
+        color: #dc2626;
+      }
+      .no-data {
+        text-align: center;
+        color: #6b7280;
+        font-style: italic;
+        padding: 40px 20px;
+      }
+      .loading {
+        text-align: center;
+        padding: 60px 40px;
+        color: #6b7280;
+        font-size: 16px;
+      }
+      @media (max-width: 768px) {
+        .container { padding: 12px; }
+        .header { padding: 16px; }
+        .sectors-grid { grid-template-columns: 1fr; }
+        h1 { font-size: 24px; }
+        .nav-links { flex-direction: column; gap: 8px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="nav">
+          <div class="nav-left">
+            <div class="logo">TrendTracker</div>
+          </div>
+          <div class="nav-links">
+            <a href="/" class="nav-link">📊 Live View</a>
+            <a href="/chart" class="nav-link">📈 Charts</a>
+          </div>
+        </div>
+        
+        <h1>Trending by Sectors</h1>
+        <p class="subtitle">Business trending organized by industry sectors - updates every 5 minutes</p>
+      </div>
+
+      <div id="loading" class="loading">Loading sector data...</div>
+      <div id="sectorsGrid" class="sectors-grid" style="display: none;"></div>
+    </div>
+
+    <script>
+      // Sector mapping for companies
+      const sectorMapping = {
+        'Technology': ['Apple', 'Microsoft', 'Alphabet', 'Meta', 'NVIDIA', 'AMD', 'Intel', 'Salesforce', 'Adobe', 'Palantir', 'Snowflake', 'CrowdStrike', 'Zoom', 'Slack', 'DocuSign'],
+        'E-commerce & Digital': ['Amazon', 'PayPal', 'Square', 'Uber', 'Airbnb', 'Spotify'],
+        'Cryptocurrency': ['Coinbase', 'Robinhood'],
+        'Media & Entertainment': ['Netflix', 'Disney', 'Warner Bros Discovery', 'Comcast'],
+        'Automotive & EV': ['Tesla', 'Ford', 'General Motors', 'Rivian', 'Lucid Motors', 'ChargePoint'],
+        'Financial Services': ['JPMorgan Chase', 'Bank of America', 'Wells Fargo', 'Goldman Sachs', 'Morgan Stanley', 'American Express', 'Visa', 'Mastercard', 'Berkshire Hathaway'],
+        'Telecommunications': ['AT&T', 'Verizon', 'T-Mobile'],
+        'Healthcare & Pharma': ['UnitedHealth', 'Anthem', 'Humana', 'CVS Health', 'Walgreens', 'Rite Aid', 'Pfizer', 'Johnson & Johnson', 'Moderna', 'Abbott', 'Medtronic', 'Boston Scientific', 'Intuitive Surgical'],
+        'Life Sciences': ['Illumina', 'Thermo Fisher', 'Danaher', 'Agilent', 'Waters', 'PerkinElmer', 'Mettler Toledo'],
+        'Energy & Oil': ['ExxonMobil', 'Chevron', 'ConocoPhillips', 'Marathon Petroleum', 'Valero'],
+        'Utilities': ['NextEra Energy', 'Duke Energy', 'Dominion Energy', 'American Electric Power', 'Southern Company'],
+        'Retail & Consumer': ['Walmart', 'Target', 'Costco', 'Home Depot', 'Nike', 'Adidas', 'Coca-Cola', 'PepsiCo', 'McDonald\'s', 'Starbucks'],
+        'Industrial & Manufacturing': ['Caterpillar', 'Deere', '3M', 'General Electric', 'Honeywell'],
+        'Aerospace & Defense': ['Lockheed Martin', 'Boeing', 'Raytheon', 'Northrop Grumman', 'General Dynamics', 'L3Harris', 'BAE Systems'],
+        'Fitness & Lifestyle': ['Peloton', 'Beyond Meat']
+      };
+
+      const sectorIcons = {
+        'Technology': '💻',
+        'E-commerce & Digital': '🛒',
+        'Cryptocurrency': '₿',
+        'Media & Entertainment': '🎬',
+        'Automotive & EV': '🚗',
+        'Financial Services': '🏦',
+        'Telecommunications': '📡',
+        'Healthcare & Pharma': '🏥',
+        'Life Sciences': '🧬',
+        'Energy & Oil': '⛽',
+        'Utilities': '⚡',
+        'Retail & Consumer': '🛍️',
+        'Industrial & Manufacturing': '🏭',
+        'Aerospace & Defense': '✈️',
+        'Fitness & Lifestyle': '💪'
+      };
+
+      let trendingData = [];
+
+      async function fetchTrendingData() {
+        try {
+          const res = await fetch('/api/trending/all');
+          trendingData = await res.json();
+          renderSectors();
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('sectorsGrid').style.display = 'grid';
+        } catch (error) {
+          document.getElementById('loading').textContent = 'Error loading data: ' + error.message;
+        }
+      }
+
+      function renderSectors() {
+        const grid = document.getElementById('sectorsGrid');
+        grid.innerHTML = '';
+
+        // Group companies by sector
+        const sectorData = {};
+        
+        // Initialize sectors
+        Object.keys(sectorMapping).forEach(sector => {
+          sectorData[sector] = [];
+        });
+
+        // Categorize trending companies
+        trendingData.forEach(company => {
+          let assigned = false;
+          for (const [sector, companies] of Object.entries(sectorMapping)) {
+            if (companies.includes(company.name)) {
+              sectorData[sector].push(company);
+              assigned = true;
+              break;
+            }
+          }
+          // If not found in any sector, add to "Other"
+          if (!assigned) {
+            if (!sectorData['Other']) sectorData['Other'] = [];
+            sectorData['Other'].push(company);
+          }
+        });
+
+        // Sort sectors by total trending activity
+        const sortedSectors = Object.entries(sectorData)
+          .filter(([sector, companies]) => companies.length > 0)
+          .sort((a, b) => {
+            const aTotal = a[1].reduce((sum, c) => sum + c.lift, 0);
+            const bTotal = b[1].reduce((sum, c) => sum + c.lift, 0);
+            return bTotal - aTotal;
+          });
+
+        // Render each sector
+        sortedSectors.forEach(([sectorName, companies]) => {
+          if (companies.length === 0) return;
+
+          const sectorCard = document.createElement('div');
+          sectorCard.className = 'sector-card';
+
+          const icon = sectorIcons[sectorName] || '🏢';
+          
+          sectorCard.innerHTML = `
+            <div class="sector-header">
+              <div class="sector-icon">${icon}</div>
+              <h3 class="sector-title">${sectorName}</h3>
+              <div class="sector-count">${companies.length}</div>
+            </div>
+            <div class="company-list">
+              ${companies.map(company => {
+                const liftClass = company.lift > 2 ? 'lift-value high' : 'lift-value';
+                return `
+                  <div class="company-item">
+                    <div class="company-info">
+                      <div class="company-name">${company.name}</div>
+                      ${company.ticker ? `<div class="company-ticker">${company.ticker}</div>` : ''}
+                    </div>
+                    <div class="company-metrics">
+                      <div class="metric">
+                        <span class="metric-value">${Math.round(company.recent_count)}</span>
+                        <span class="metric-label">Mentions</span>
+                      </div>
+                      <div class="metric">
+                        <span class="metric-value ${liftClass}">${company.lift.toFixed(1)}×</span>
+                        <span class="metric-label">Lift</span>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `;
+
+          grid.appendChild(sectorCard);
+        });
+
+        if (sortedSectors.length === 0) {
+          grid.innerHTML = '<div class="no-data">No trending companies found</div>';
+        }
+      }
+
+      // Auto-refresh every 5 minutes
+      fetchTrendingData();
+      setInterval(fetchTrendingData, 5 * 60 * 1000);
+    </script>
+  </body>
+</html>
