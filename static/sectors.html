@@ -218,7 +218,7 @@
     <script>
       // Sector mapping for companies
       const sectorMapping = {
-        'Technology': ['Apple', 'Microsoft', 'Alphabet', 'Meta', 'NVIDIA', 'AMD', 'Intel', 'Salesforce', 'Adobe', 'Palantir', 'Snowflake', 'CrowdStrike', 'Zoom', 'Slack', 'DocuSign'],
+        'Technology': ['Apple', 'Microsoft', 'Alphabet', 'Meta', 'NVIDIA', 'AMD', 'Advanced Micro Devices', 'Intel', 'Salesforce', 'Adobe', 'Palantir', 'Snowflake', 'CrowdStrike', 'Zoom', 'Slack', 'DocuSign', 'ASML Holding', 'Elastic', 'ServiceNow'],
         'E-commerce & Digital': ['Amazon', 'PayPal', 'Square', 'Uber', 'Airbnb', 'Spotify'],
         'Cryptocurrency': ['Coinbase', 'Robinhood'],
         'Media & Entertainment': ['Netflix', 'Disney', 'Warner Bros Discovery', 'Comcast'],
@@ -231,8 +231,9 @@
         'Utilities': ['NextEra Energy', 'Duke Energy', 'Dominion Energy', 'American Electric Power', 'Southern Company'],
         'Retail & Consumer': ['Walmart', 'Target', 'Costco', 'Home Depot', 'Nike', 'Adidas', 'Coca-Cola', 'PepsiCo', 'McDonald\'s', 'Starbucks'],
         'Industrial & Manufacturing': ['Caterpillar', 'Deere', '3M', 'General Electric', 'Honeywell'],
-        'Aerospace & Defense': ['Lockheed Martin', 'Boeing', 'Raytheon', 'Northrop Grumman', 'General Dynamics', 'L3Harris', 'BAE Systems'],
-        'Fitness & Lifestyle': ['Peloton', 'Beyond Meat']
+        'Aerospace & Defense': ['Lockheed Martin', 'Boeing', 'Raytheon', 'Northrop Grumman', 'General Dynamics', 'L3Harris', 'BAE Systems', 'Bombardier'],
+        'Fitness & Lifestyle': ['Peloton', 'Beyond Meat'],
+        'Gaming': ['Unity Software']
       };
 
       const sectorIcons = {
@@ -250,7 +251,9 @@
         'Retail & Consumer': '🛍️',
         'Industrial & Manufacturing': '🏭',
         'Aerospace & Defense': '✈️',
-        'Fitness & Lifestyle': '💪'
+        'Fitness & Lifestyle': '💪',
+        'Gaming': '🎮',
+        'Other': '🏢'
       };
 
       let trendingData = [];
@@ -353,9 +356,9 @@
         }
       }
 
-      // Auto-refresh every 5 minutes
+      // Auto-refresh every 1 second
       fetchTrendingData();
-      setInterval(fetchTrendingData, 5 * 60 * 1000);
+      setInterval(fetchTrendingData, 1000);
     </script>
   </body>
 </html>
