@@ -1,4 +1,5 @@
 # Trending Businesses Tracker
+<img width="1470" height="956" alt="Screenshot 2025-11-17 at 11 51 33 PM" src="https://github.com/user-attachments/assets/c740b3ca-d93b-4c2a-8c12-d38ef2ad00e3" />
 
 Backend: FastAPI (Python)
 Frontend: Static HTML + JS
@@ -12,7 +13,7 @@ This app collects recent post titles from selected Reddit subreddits (via RSS) a
 
 ```bash
 pip install -r requirements.txt
-```
+
 
 3. Run the server:
 
