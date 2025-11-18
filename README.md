@@ -8,7 +8,10 @@ Frontend: Static HTML + JS
 
 This app collects recent post titles from selected Reddit subreddits (via RSS) and business news RSS feeds, detects sudden increases in company mentions, and shows the current trending companies.
 
-## Quickstart
+## Website link via Vercel 
+https://trending-business.vercel.app/
+
+## Quickstart(Local)
 
 1. Create and activate a virtualenv (recommended)
 2. Install dependencies:
