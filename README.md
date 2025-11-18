@@ -16,7 +16,7 @@ This app collects recent post titles from selected Reddit subreddits (via RSS) a
 ```bash
 pip install -r requirements.txt
 
-
+```
 3. Run the server:
 
 ```bash
