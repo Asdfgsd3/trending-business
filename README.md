@@ -1,4 +1,6 @@
 # Trending Businesses Tracker
+<img width="1470" height="956" alt="Screenshot 2025-11-17 at 11 52 30 PM" src="https://github.com/user-attachments/assets/e6a854a5-003c-45e0-9687-c976841570a6" />
+
 <img width="1470" height="956" alt="Screenshot 2025-11-17 at 11 51 33 PM" src="https://github.com/user-attachments/assets/c740b3ca-d93b-4c2a-8c12-d38ef2ad00e3" />
 
 Backend: FastAPI (Python)
