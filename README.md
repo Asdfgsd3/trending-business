@@ -11,23 +11,6 @@ This app collects recent post titles from selected Reddit subreddits (via RSS) a
 ## Website link via Vercel 
 https://trending-business.vercel.app/
 
-## Quickstart(Local)
-
-1. Create and activate a virtualenv (recommended)
-2. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-
-```
-3. Run the server:
-
-```bash
-uvicorn app.main:app --reload
-```
-
-4. Open the UI: http://localhost:8000/
-
 ## How it works
 
 - Sources: Reddit subreddits via RSS (no API key) and a few news RSS feeds.
