@@ -48,11 +48,12 @@ if os.path.isdir(static_dir):
 
 detector: TrendingDetector | None = None
 latest_scores: List[Dict] = []
+all_trending_scores: List[Dict] = []  # Cache for all results
 historical_data: List[Dict] = []
 
 
 async def refresh_trending() -> None:
-    global latest_scores, historical_data
+    global latest_scores, all_trending_scores, historical_data
     assert detector is not None
 
     reddit_titles = await fetch_recent_reddit_titles()
@@ -61,13 +62,64 @@ async def refresh_trending() -> None:
     titles = reddit_titles + news_titles + social_titles
 
     timestamp = datetime.now(tz=timezone.utc).isoformat()
-    scores = detector.score_titles(titles, timestamp)
-    latest_scores = scores
+    
+    # Get all scores first
+    # We need to modify score_titles slightly or just use the logic here if we want *all* of them
+    # The current score_titles returns top 20. Let's do the scoring manually here to get ALL, 
+    # then slice for latest_scores.
+    
+    # Aggregate counts over titles
+    agg_counts: Dict[str, Tuple[int, str | None]] = {}
+    for title in titles:
+        counts = detector._count_mentions(title)
+        for name, (c, alias_used) in counts.items():
+            prev = agg_counts.get(name)
+            if prev:
+                agg_counts[name] = (prev[0] + c, prev[1] or alias_used)
+            else:
+                agg_counts[name] = (c, alias_used)
 
-    # Add to historical data
+    # Compute lift over baseline and update EMA for ALL companies
+    all_results: List[Dict] = []
+    for company, _ in detector.company_patterns:
+        recent = float(agg_counts.get(company.name, (0, None))[0])
+        alias_used = agg_counts.get(company.name, (0, None))[1]
+        baseline = float(detector.baseline.get(company.name, 0.0))
+        
+        # Trend score: lift = (recent + 1) / (baseline + 1)
+        lift = (recent + 1.0) / (baseline + 1.0)
+
+        # Update EMA baseline toward recent
+        new_baseline = (1 - detector.alpha) * baseline + detector.alpha * recent
+        detector.baseline[company.name] = new_baseline
+
+        # Add to results if it has any activity or significant lift
+        if recent > 0 or lift > 1.2:
+            all_results.append(
+                {
+                    "name": company.name,
+                    "ticker": company.ticker,
+                    "recent_count": recent,
+                    "baseline": baseline,
+                    "lift": lift,
+                    "timestamp": timestamp,
+                    "alias_used": None,
+                }
+            )
+            if alias_used:
+                all_results[-1]["alias_used"] = detector._clean_alias(alias_used)
+
+    # Sort by lift then by recent counts
+    all_results.sort(key=lambda r: (r["lift"], r["recent_count"]), reverse=True)
+    
+    # Update globals
+    all_trending_scores = all_results
+    latest_scores = all_results[:20]
+
+    # Add to historical data (using top 20 for history to keep it small)
     historical_entry = {
         "timestamp": timestamp,
-        "companies": {score["name"]: {"lift": score["lift"], "recent_count": score["recent_count"]} for score in scores}
+        "companies": {score["name"]: {"lift": score["lift"], "recent_count": score["recent_count"]} for score in latest_scores}
     }
     historical_data.append(historical_entry)
     
@@ -138,54 +190,8 @@ async def get_trending() -> JSONResponse:
 @app.get("/api/trending/all")
 async def get_all_trending() -> JSONResponse:
     # Return all trending companies for sectors view
-    if detector is None:
-        return JSONResponse([])
-    
-    # Get all companies with any activity or lift > 1.2
-    reddit_titles = await fetch_recent_reddit_titles()
-    news_titles = await fetch_recent_news_titles()
-    social_titles = await fetch_recent_social_titles()
-    titles = reddit_titles + news_titles + social_titles
-    
-    timestamp = datetime.now(tz=timezone.utc).isoformat()
-    
-    # Get the full list (before the top 20 limit)
-    all_results = []
-    agg_counts = {}
-    
-    # Aggregate counts
-    for title in titles:
-        counts = detector._count_mentions(title)
-        for name, (c, alias_used) in counts.items():
-            prev = agg_counts.get(name)
-            if prev:
-                agg_counts[name] = (prev[0] + c, prev[1] or alias_used)
-            else:
-                agg_counts[name] = (c, alias_used)
-    
-    # Calculate scores for all companies
-    for company, _ in detector.company_patterns:
-        recent = float(agg_counts.get(company.name, (0, None))[0])
-        alias_used = agg_counts.get(company.name, (0, None))[1]
-        baseline = float(detector.baseline.get(company.name, 0.0))
-        lift = (recent + 1.0) / (baseline + 1.0)
-        
-        # Include if there's any activity or meaningful lift
-        if recent > 0 or lift > 1.2:
-            all_results.append({
-                "name": company.name,
-                "ticker": company.ticker,
-                "recent_count": recent,
-                "baseline": baseline,
-                "lift": lift,
-                "timestamp": timestamp,
-                "alias_used": detector._clean_alias(alias_used) if alias_used else None,
-            })
-    
-    # Sort by lift then by recent counts
-    all_results.sort(key=lambda r: (r["lift"], r["recent_count"]), reverse=True)
-    
-    return JSONResponse(all_results)
+    # Served from cache
+    return JSONResponse(all_trending_scores)
 
 
 @app.get("/")

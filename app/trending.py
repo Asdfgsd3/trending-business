@@ -47,11 +47,15 @@ class TrendingDetector:
             self.company_patterns.append((c, patterns))
 
         # Baseline EMA per company
-        self.alpha = 0.3  # EMA smoothing factor
+        self.alpha = 0.3  # EMA smoothing factor for baseline
+        self.recent_alpha = 0.5 # EMA smoothing factor for recent counts (faster adaptation)
         self.min_mentions_for_trend = 2.0
         self.baseline: Dict[str, float] = {}
+        self.recent_ema: Dict[str, float] = {} # Track smoothed recent counts
+        
         if baseline_state and isinstance(baseline_state, dict):
             self.baseline = {k: float(v) for k, v in baseline_state.get("baseline", {}).items()}
+            self.recent_ema = {k: float(v) for k, v in baseline_state.get("recent_ema", {}).items()}
 
     def _compile_word_pattern(self, phrase: str) -> re.Pattern[str]:
         escaped = re.escape(phrase)
@@ -99,23 +103,33 @@ class TrendingDetector:
         # Compute lift over baseline and update EMA for ALL companies (to maintain baselines)
         all_results: List[Dict] = []
         for company, _ in self.company_patterns:
-            recent = float(agg_counts.get(company.name, (0, None))[0])
+            raw_recent = float(agg_counts.get(company.name, (0, None))[0])
             alias_used = agg_counts.get(company.name, (0, None))[1]
             baseline = float(self.baseline.get(company.name, 0.0))
-            # Trend score: lift = (recent + 1) / (baseline + 1)
-            lift = (recent + 1.0) / (baseline + 1.0)
+            
+            # Update smoothed recent count
+            prev_recent_ema = self.recent_ema.get(company.name, raw_recent)
+            # If we have no history, start with raw. Otherwise smooth it.
+            # If raw is 0, we don't want to drop instantly to 0.
+            smoothed_recent = (1 - self.recent_alpha) * prev_recent_ema + self.recent_alpha * raw_recent
+            self.recent_ema[company.name] = smoothed_recent
+            
+            # Trend score: lift = (smoothed_recent + 1) / (baseline + 1)
+            # Use smoothed_recent for lift calculation to prevent sharp drops
+            lift = (smoothed_recent + 1.0) / (baseline + 1.0)
 
-            # Update EMA baseline toward recent
-            new_baseline = (1 - self.alpha) * baseline + self.alpha * recent
+            # Update EMA baseline toward smoothed recent (more stable)
+            new_baseline = (1 - self.alpha) * baseline + self.alpha * smoothed_recent
             self.baseline[company.name] = new_baseline
 
             # Add to results if it has any activity or significant lift
-            if recent > 0 or lift > 1.2:  # Lower threshold to capture more companies
+            # Use raw_recent > 0 check so we still see active things, but rank by smoothed lift
+            if raw_recent > 0 or lift > 1.2:  # Lower threshold to capture more companies
                 all_results.append(
                     {
                         "name": company.name,
                         "ticker": company.ticker,
-                        "recent_count": recent,
+                        "recent_count": smoothed_recent, # Return smoothed count for display consistency
                         "baseline": baseline,
                         "lift": lift,
                         "timestamp": timestamp,
@@ -133,7 +147,10 @@ class TrendingDetector:
         return all_results[:20]
 
     def serialize_state(self) -> Dict:
-        return {"baseline": self.baseline}
+        return {
+            "baseline": self.baseline,
+            "recent_ema": self.recent_ema
+        }
 
     def _clean_alias(self, regex_pattern: str) -> str:
         # Convert from compiled pattern text to something readable; best-effort
